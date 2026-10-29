@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    gap: 30px;
+    padding: 50px;
+    margin: 200px;
+    border: 5px solid;
+    border-radius: 20px;
+    background-color: rgb(192, 184, 184);
+
+}
+
+.buttons {
+    display: flex;
+    gap: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    transition-duration: 0.4s;
+    background-color: blueviolet;
+    color: whitesmoke;
+    border: 5px solid black;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: goldenrod;
+    color:whitesmoke;
+}

@@ -1,21 +1,31 @@
 let humanScore = 0;
 let computerScore = 0;
+let choice;
+
+let result = document.querySelector("#result");
 
 
-/* 
-FUNCTION getComputerChoice
-(get a random number between 1 and 3)
-SET random number between (1,3) 
-IF random number = 1, SET choice = rock;
-ELSE IF random number = 2, SET choice = paper;
-ELSE SET choice = scissors
-END FUNCTION
-*/
+let rock = document.querySelector(".rock");
+rock.addEventListener("click", () => {
+    choice = "rock";
+    playRound(choice, getComputerChoice());
+});
+
+let paper = document.querySelector(".paper");
+paper.addEventListener("click", () => {
+    choice = "paper";
+    playRound(choice, getComputerChoice());
+})
+
+let scissors = document.querySelector(".scissors");
+scissors.addEventListener("click", () => {
+    choice = "scissors";
+    playRound(choice, getComputerChoice());
+})
 
 function getComputerChoice(){
     let result = Math.floor(Math.random() * 3) + 1;
     let choice;
-
     if(result === 1){
         return choice = "rock";
     } else if (result === 2){
@@ -26,41 +36,14 @@ function getComputerChoice(){
 
 }
 
-/*
-FUNCTION getHumanChoice
-GET user input (rock, paper, scissors)
-RETURN user input
-END FUNCTION
-*/
-
-function getHumanChoice() {
-    let choice = prompt("Pick Rock, Paper or Scissors", "");
-    return choice;
-}
-
-
-/*
-FUNCTION playRound
-SET PARAM humanChoice and computerChoice
-SET humanChoice to lower case;
-IF humanChoice equals paper and computerChoice is scissors, add a point to computerScore;
-ELSE IF computerChoice is rock, add a point to humanChoice
-ELSE add no point (its a draw)
-
-repeat this with humanChoice for rock and scisssor.
-*/
-
 function playRound(humanChoice, computerChoice){
-    humanChoice = humanChoice.toLowerCase();
     
     if (humanChoice === "paper"){
         if(computerChoice === "rock"){
             humanScore++;
         } else if (computerChoice === "scissors"){
             computerScore++;
-        } else {
-            console.log("draw!");
-        }
+        } 
     }
 
      if (humanChoice === "rock"){
@@ -68,9 +51,7 @@ function playRound(humanChoice, computerChoice){
             humanScore++;
         } else if (computerChoice === "paper"){
             computerScore++;
-        } else {
-            console.log("draw!");
-        }
+        } 
     }
 
      if (humanChoice === "scissors"){
@@ -78,18 +59,29 @@ function playRound(humanChoice, computerChoice){
             humanScore++;
         } else if (computerChoice === "rock"){
             computerScore++;
-        } else {
-            console.log("draw!");
         }
     }
-
-    console.log(`The score is, computer:${computerScore} vs you:${humanScore}`);
+    
+    if(computerScore >= 5){
+        result.textContent = "Game Over"; //change into dom
+    } else if (humanScore >= 5){
+        result.textContent = "Victory!";
+    } else {
+    result.textContent = `The score is, computer: ${computerScore} vs you: ${humanScore}`;
+    }
 }
+
+function playGame(){
+const computerSelection = getComputerChoice();
+playRound(choice, computerSelection);
+}
+
+playGame();
 
 //FUNCTION playGame
 //FOR 5 rounds call playRound function
 //END
-
+/*
 function playGame(){
     for (i=0; i < 5; i++){
         const humanSelection = getHumanChoice();
@@ -107,3 +99,4 @@ function playGame(){
 
 
 playGame();
+*/
